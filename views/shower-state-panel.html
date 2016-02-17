@@ -1,0 +1,15 @@
+<div ng-controller="showerController">
+    <!-- if there is an error, display its message -->
+    <div ng-if="error" class="alert alert-danger" role="alert">{{error.message}}</div>
+
+    <!-- if clusterState is available, display it as formatted json -->
+    <div ng-if="showerState" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{paneName}}</h3>
+        </div>
+        <div class="panel-body">
+            <pre>{{showerState | json}}</pre>
+        </div>
+        <nvd3 options="options" data="data"></nvd3>
+    </div>
+</div>

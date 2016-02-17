@@ -1,0 +1,20 @@
+{
+  "name": "elasticsearch-angular-D3",
+  "version": "0.0.1",
+  "authors": [
+    "Joshua Li <joshua.li@technocrat.com.au>"
+  ],
+  "description": "A simple example that details all steps needed to setup angular and D3",
+  "main": "index.html",
+  "keywords": [
+    "elasticsearch",
+    "D3JS"
+  ],
+  "license": "Apache 2.0",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.2.19",
+    "bootstrap": "~3.2.0",
+    "angular-nvd3": "~1.0.5"
+  }
+}
