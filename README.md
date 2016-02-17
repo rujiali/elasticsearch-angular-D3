@@ -46,4 +46,4 @@ You will need to have the sample data imported into elasticsarch
   python -m SimpleHTTPServer 8080
   ```
 
-5. Open the index.html file in your browser.
+5. Visit http://localhost:8080 in your browser.
