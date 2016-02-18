@@ -22,6 +22,11 @@ ElasticApp.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: './views/shower-state-panel.html'
       })
 
+      .state('search', {
+        url: '/search',
+        templateUrl: './views/search.html'
+      })
+
       .state('cluster', {
         url: '/cluster',
         templateUrl: './views/state-panel.html'
