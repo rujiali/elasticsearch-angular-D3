@@ -27,6 +27,14 @@ ElasticApp.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: './views/search.html'
       })
 
+      .state('search.results', {
+        url: "/results",
+        templateUrl: "search.results.html",
+        controller: function($scope){
+          $scope.items = ["A", "List", "Of", "Items"];
+        }
+      })
+
       .state('cluster', {
         url: '/cluster',
         templateUrl: './views/state-panel.html'

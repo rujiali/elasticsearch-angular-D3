@@ -23,11 +23,66 @@ ElasticApp.controller('formController', function ($scope, $http) {
                   });
                 }
               }
-              $scope.data = {
-                repeatSelect: null,
-                availableOptions: options,
+              $scope.condition = {
+                aggregationSelect: null,
+                availableAggregations: options,
+                diagramSelect: null,
+                availableDiagrams:[
+                  {id: 'Pie Chart', name: 'Pie Chart'},
+                  {id: 'Discretebar Chart', name: 'Discretebar Chart'},
+                ]
               };
             });
+
+        // form submit handler
+        $scope.submit = function() {
+          var query_data = composeQuery($scope.keywords, $scope.condition.aggregationSelect, 8);
+
+          $http.post('http://localhost:3000/documents/msearch', query_data)
+              .success(function(data, status, headers, config) {
+                switch ($scope.condition.diagramSelect) {
+                  case 'Pie Chart':
+                      $scope.options = composePieChartOptions();
+                      $scope.data = composePieChartData(data.responses[0].aggregations);
+                    break;
+                  case 'Discretebar Chart':
+                    break;
+                }
+              });
+        }
       })
 
+
 });
+
+function composeQuery(keywords, field, size) {
+  return {
+    "query_body": [
+      {
+        "index": "public_toilets",
+        "type": "logs"
+      },
+      {
+        "size": 0,
+        "query": {
+          "query_string": {
+            "query": keywords,
+            "analyze_wildcard": true
+          }
+        },
+        "aggs": {
+          "2": {
+            "terms": {
+              "field": field,
+              "size": size,
+              "order": {
+                "_count": "desc"
+              }
+            }
+          }
+        }
+      }
+    ]
+  };
+}
+
