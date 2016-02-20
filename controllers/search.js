@@ -42,10 +42,12 @@ ElasticApp.controller('formController', function ($scope, $http) {
               .success(function(data, status, headers, config) {
                 switch ($scope.condition.diagramSelect) {
                   case 'Pie Chart':
-                      $scope.options = composePieChartOptions();
-                      $scope.data = composePieChartData(data.responses[0].aggregations);
+                    $scope.options = composePieChartOptions();
+                    $scope.data = composePieChartData(data.responses[0].aggregations);
                     break;
                   case 'Discretebar Chart':
+                    $scope.options = composeDiscretebarChartOptions();
+                    $scope.data= composeDiscretepieChartData(data.responses[0].aggregations);
                     break;
                 }
               });
