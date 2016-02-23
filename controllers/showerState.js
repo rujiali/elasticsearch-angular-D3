@@ -1,7 +1,7 @@
 // Controller
-ElasticApp.controller('showerController', function ($scope, $http) {
+ElasticApp.controller('showerController', function ($scope, $http, host, index, type) {
 
-  $http.post('http://localhost:3000/authenticate', {name: 'testuser', pass: '12345'})
+  $http.post(host+'/authenticate', {name: 'testuser', pass: '12345'})
       .success(function(data, status, headers, config) {
         var token = data.token;
         $http.defaults.headers.common['Accept'] = 'application/json';
@@ -9,8 +9,8 @@ ElasticApp.controller('showerController', function ($scope, $http) {
         var query_data = {
           "query_body": [
             {
-              "index": "public_toilets",
-              "type": "logs"
+              "index": index,
+              "type": type
             },
             {
               "size": 0,
@@ -45,7 +45,7 @@ ElasticApp.controller('showerController', function ($scope, $http) {
             }
           ]
         };
-        $http.post('http://localhost:3000/documents/msearch', query_data)
+        $http.post(host+'/documents/msearch', query_data)
             .success(function(data, status, headers, config) {
               $scope.paneName = 'Shower by State';
               $scope.showerState = data;

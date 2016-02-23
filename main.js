@@ -1,5 +1,5 @@
 // App module
-var ElasticApp = angular.module('ElasticApp', ['nvd3', 'ui.router']);
+var ElasticApp = angular.module('ElasticApp', ['nvd3', 'ui.router', 'ElasticApp.config']);
 
 ElasticApp.config(function($stateProvider, $urlRouterProvider) {
 

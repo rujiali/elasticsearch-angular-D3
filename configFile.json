@@ -1,0 +1,5 @@
+{
+  "host": "http://localhost:3000",
+  "index": "public_toilets",
+  "type": "logs"
+}
